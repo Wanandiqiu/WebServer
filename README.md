@@ -1,5 +1,7 @@
 WebServer
 
+客户端发起请求，Server从TCP缓冲区读到请求数据在readbuf中，server去解析读取到的数据，并将读取到的数据初始化到writebuf中。之后makeresponse生成响应信息，server要将响应数据发送出去，将writebuf的数据写入TCP写缓冲区
+
 **代码逻辑：**
 
 WebServer构造函数中初始化一些信息，调用start函数，主线程循环，调用epoll_wait检测哪些fd有数据到达，返回检测到了多少个，循环处理每一个事件。
